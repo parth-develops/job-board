@@ -9,6 +9,14 @@ const config: Config = {
   theme: {
     container: {
       center: true,
+      padding: {
+        DEFAULT: "1rem",
+      },
+      screens: {
+        'lg': '1024px',
+        'xl': '1024px',
+        '2xl': '1024px',
+      },
     },
     extend: {
       colors: {
