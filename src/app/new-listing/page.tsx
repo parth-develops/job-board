@@ -16,8 +16,12 @@ export default async function NewListing() {
     const workos = new WorkOS(process.env.WORKOS_API_KEY)
     const organizationMemberships = await workos.userManagement.listOrganizationMemberships({ userId: user.id });
 
-    function handleSubmit(formData: FormData, userId: string) {
-        createCompany(formData, userId);
+    async function handleSubmit(formData: FormData) {
+        "use server"
+
+        if (user) {   
+            await createCompany(formData.get("company") as string, user.id);
+        }
     }
 
     return (
@@ -29,7 +33,7 @@ export default async function NewListing() {
                     <div className="border border-blue-200 bg-blue-50 p-4 rounded-md">No companies assigned to your user</div>
                     <h2 className="text-lg mt-6">Create a new company</h2>
                     <p className="text-gray-500 text-sm">To create a job listing you first need to create your company</p>
-                    <form action={formData => handleSubmit(formData, user.id)} className="flex gap-3">
+                    <form action={handleSubmit} className="flex gap-3">
                         <div>
                             <input type="text"
                                 name="company"
