@@ -1,3 +1,4 @@
+import JobForm from "@/app/components/JobForm";
 import { withAuth } from "@workos-inc/authkit-nextjs"
 import { WorkOS } from "@workos-inc/node";
 
@@ -26,11 +27,7 @@ export default async function OrganizationPage(props: PageProps) {
 
     return (
         <div className='container'>
-            <form action="" className="">
-                <input type="text"
-                    className="border p-2"
-                />
-            </form>
+            <JobForm />
         </div>
     )
 }
