@@ -9,6 +9,7 @@ import {
     StateSelect,
 } from "react-country-state-city";
 import { useState } from "react";
+import ImageUpload from "./ImageUpload";
 
 export default function JobForm() {
     const [countryid, setCountryid] = useState(0);
@@ -65,23 +66,13 @@ export default function JobForm() {
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <h3>Job icon</h3>
-                            <div className="bg-gray-200 size-24 rounded-md inline-flex items-center content-center justify-center">
-                                <FaStar />
-                            </div>
-                            <div className="mt-2">
-                                <Button variant="soft" className="block">Select File</Button>
-                            </div>
+                            <ImageUpload icon={FaStar} />
                         </div>
                         <div className="">
                             <h3>Contact Person</h3>
                             <div className="flex gap-2">
                                 <div>
-                                    <div className="bg-gray-200 size-24 rounded-md inline-flex items-center content-center justify-center">
-                                        <FaUser />
-                                    </div>
-                                    <div className="mt-2">
-                                        <Button variant="soft" className="block">Select File</Button>
-                                    </div>
+                                    <ImageUpload icon={FaUser} />
                                 </div>
                                 <div className="w-full flex flex-col">
                                     <TextField.Root placeholder="John Doe">
