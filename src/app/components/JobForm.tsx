@@ -10,16 +10,32 @@ import {
 } from "react-country-state-city";
 import { useState } from "react";
 import ImageUpload from "./ImageUpload";
+import { saveJobAction } from "../actions/jobActions";
+import { redirect } from "next/navigation";
 
-export default function JobForm() {
-    const [countryid, setCountryid] = useState(0);
-    const [stateid, setstateid] = useState(0);
+export default function JobForm({ orgId }: { orgId: string }) {
+    const [countryId, setCountryId] = useState(0);
+    const [stateId, setstateId] = useState(0);
+    const [, setCityId] = useState(0);
+    const [countryName, setCountryName] = useState("");
+    const [stateName, setstateName] = useState("");
+    const [cityName, setCityName] = useState("");
+
+    async function saveJob(data: FormData) {
+        data.set("country", countryName)
+        data.set("state", stateName)
+        data.set("city", cityName)
+        data.set("orgId", orgId)
+
+        const jobDoc = await saveJobAction(data)
+        redirect(`/jobs/${orgId}`)
+    }
 
     return (
         <Theme>
-            <form action="" className="mt-6">
+            <form action={saveJob} className="mt-6">
                 <div className="flex flex-col gap-4">
-                    <TextField.Root placeholder="Job Title" />
+                    <TextField.Root name="jobTitle" placeholder="Job Title" />
 
                     <div className="grid grid-cols-3 gap-4">
                         <RadioGroup.Root defaultValue="hybrid" name="locationType">
@@ -34,7 +50,7 @@ export default function JobForm() {
                         </RadioGroup.Root>
                         <div>
                             <label htmlFor=""></label>
-                            <TextField.Root>
+                            <TextField.Root name="salary" type="number">
                                 <TextField.Slot>$</TextField.Slot>
                                 <TextField.Slot>/year</TextField.Slot>
                             </TextField.Root>
@@ -42,23 +58,28 @@ export default function JobForm() {
                     </div>
                     <div className="flex gap-4">
                         <CountrySelect
-                            onChange={(e) => {
-                                setCountryid(e.id);
+                            onChange={(e: any) => {
+                                console.log(e);
+
+                                setCountryId(e.id);
+                                setCountryName(e.name);
                             }}
                             placeHolder="Select Country"
                         />
                         <StateSelect
-                            countryid={countryid}
-                            onChange={(e) => {
-                                setstateid(e.id);
+                            countryid={countryId}
+                            onChange={(e: any) => {
+                                setstateId(e.id);
+                                setstateName(e.name);
                             }}
                             placeHolder="Select State"
                         />
                         <CitySelect
-                            countryid={countryid}
-                            stateid={stateid}
-                            onChange={(e: Event) => {
-                                console.log(e);
+                            countryid={countryId}
+                            stateid={stateId}
+                            onChange={(e: any) => {
+                                setCityId(e.id);
+                                setCityName(e.name);
                             }}
                             placeHolder="Select City"
                         />
@@ -66,26 +87,26 @@ export default function JobForm() {
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <h3>Job icon</h3>
-                            <ImageUpload name="xyz" icon={FaStar} />
+                            <ImageUpload name="jobIcon" icon={FaStar} />
                         </div>
                         <div className="">
                             <h3>Contact Person</h3>
                             <div className="flex gap-2">
                                 <div>
-                                    <ImageUpload name="abc" icon={FaUser} />
+                                    <ImageUpload name="personImg" icon={FaUser} />
                                 </div>
                                 <div className="w-full flex flex-col">
-                                    <TextField.Root placeholder="John Doe">
+                                    <TextField.Root placeholder="John Doe" name="name">
                                         <TextField.Slot>
                                             <FaUser />
                                         </TextField.Slot>
                                     </TextField.Root>
-                                    <TextField.Root placeholder="Phone" type="tel">
+                                    <TextField.Root placeholder="Phone" type="tel" name="phone">
                                         <TextField.Slot>
                                             <FaPhoneAlt />
                                         </TextField.Slot>
                                     </TextField.Root>
-                                    <TextField.Root placeholder="Email" type="email">
+                                    <TextField.Root placeholder="Email" type="email" name="email">
                                         <TextField.Slot>
                                             <FaEnvelope size={16} />
                                         </TextField.Slot>
@@ -94,7 +115,7 @@ export default function JobForm() {
                             </div>
                         </div>
                     </div>
-                    <TextArea placeholder="Job Description" resize={"vertical"} />
+                    <TextArea placeholder="Job Description" resize={"vertical"} name="description" />
                     <Button size="3" type="submit" className="mx-auto max-w-40 w-full">Save</Button>
                 </div>
             </form>

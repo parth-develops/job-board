@@ -42,7 +42,8 @@ export default function ImageUpload(props: PropsType) {
                 {(imgPath && !isUploading) ? <Image onLoad={() => setIsImgLoading(false)} src={imgPath} alt="image" width={100} height={100} className="w-auto h-auto" /> : (!imgPath && !isUploading && <props.icon />)}
             </div>
             <div className="mt-2">
-                <input type="file" name={props.name} ref={fileRef} className="hidden" onChange={e => upload(e)} />
+                <input type="hidden" name={props.name} value={imgPath} />
+                <input type="file" ref={fileRef} className="hidden" onChange={e => upload(e)} />
                 <Button variant="soft" className="block" type="button"
                     onClick={() => fileRef.current?.click()}
                 >

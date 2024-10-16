@@ -27,7 +27,7 @@ export default async function OrganizationPage(props: PageProps) {
 
     return (
         <div className='container'>
-            <JobForm />
+            <JobForm orgId={orgId} />
         </div>
     )
 }
