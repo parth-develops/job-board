@@ -17,9 +17,9 @@ export const POST = async (req: NextRequest) => {
     try {
         await writeFile(
             path.join(process.cwd(), "public/uploads/" + filename),
-            buffer
+            buffer // error here
         );
-        return NextResponse.json({ Message: "Success", status: 201, NewFileName: filename });
+        return NextResponse.json({ Message: "Success", status: 201, NewFileName: filename, path: `/uploads/${filename}` });
     } catch (error) {
         console.log("Error occured ", error);
         return NextResponse.json({ Message: "Failed", status: 500 });

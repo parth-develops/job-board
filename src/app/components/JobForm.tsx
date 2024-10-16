@@ -66,13 +66,13 @@ export default function JobForm() {
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <h3>Job icon</h3>
-                            <ImageUpload icon={FaStar} />
+                            <ImageUpload name="xyz" icon={FaStar} />
                         </div>
                         <div className="">
                             <h3>Contact Person</h3>
                             <div className="flex gap-2">
                                 <div>
-                                    <ImageUpload icon={FaUser} />
+                                    <ImageUpload name="abc" icon={FaUser} />
                                 </div>
                                 <div className="w-full flex flex-col">
                                     <TextField.Root placeholder="John Doe">
