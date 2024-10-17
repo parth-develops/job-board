@@ -15,11 +15,13 @@ export default function JobCard({ jobInfo }: { jobInfo: Job }) {
                 </div>
                 <div className="sm:flex sm:grow">
                     <div className="sm:grow">
-                        <p className="text-gray-500 text-sm">{jobInfo.jobTitle}</p>
+                        <p className="text-gray-500 text-sm">{jobInfo.orgName}</p>
                         <p className="font-bold text-lg mb-1">{jobInfo.jobTitle}</p>
                         <p className="text-gray-400 text-sm">Remote &bull; New York, US &bull; Fulltime</p>
                     </div>
-                    <div className="content-end text-gray-500 text-sm font-medium mt-2 sm:mt-0"><TimeAgo date={jobInfo.createdAt} /></div>
+                    {jobInfo.createdAt && (
+                        <div className="content-end text-gray-500 text-sm font-medium mt-2 sm:mt-0"><TimeAgo date={jobInfo.createdAt} /></div>
+                    )}
                 </div>
             </div>
         </div>

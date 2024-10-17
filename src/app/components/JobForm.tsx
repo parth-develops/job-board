@@ -37,7 +37,7 @@ export default function JobForm({ orgId }: { orgId: string }) {
                 <div className="flex flex-col gap-4">
                     <TextField.Root name="jobTitle" placeholder="Job Title" />
 
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid md:grid-cols-3 gap-4">
                         <RadioGroup.Root defaultValue="hybrid" name="locationType">
                             <RadioGroup.Item value="onsite">On-site</RadioGroup.Item>
                             <RadioGroup.Item value="hybrid">Hybrid</RadioGroup.Item>
@@ -56,7 +56,7 @@ export default function JobForm({ orgId }: { orgId: string }) {
                             </TextField.Root>
                         </div>
                     </div>
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 flex-wrap sm:flex-nowrap">
                         <CountrySelect
                             onChange={(e: any) => {
                                 console.log(e);
@@ -84,7 +84,7 @@ export default function JobForm({ orgId }: { orgId: string }) {
                             placeHolder="Select City"
                         />
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid md:grid-cols-2 gap-4">
                         <div>
                             <h3>Job icon</h3>
                             <ImageUpload name="jobIcon" icon={FaStar} />
