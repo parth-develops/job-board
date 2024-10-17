@@ -17,6 +17,7 @@ export type Job = {
     description: string,
     createdAt: Date,
     updatedAt: Date,
+    isAdmin?: boolean,
 }
 
 const JobSchema = new Schema({

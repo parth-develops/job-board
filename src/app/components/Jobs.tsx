@@ -1,4 +1,4 @@
-import { Job } from "../models/Job";
+import type { Job } from "../models/Job";
 import JobCard from "./JobCard";
 
 export default function Jobs({ header, jobs }: { header: string, jobs: Job[] }) {

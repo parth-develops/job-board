@@ -45,8 +45,8 @@ export default function JobForm({ orgId }: { orgId: string }) {
                         </RadioGroup.Root>
                         <RadioGroup.Root defaultValue="project" name="employmentType">
                             <RadioGroup.Item value="project">Project</RadioGroup.Item>
-                            <RadioGroup.Item value="part">Part-time</RadioGroup.Item>
-                            <RadioGroup.Item value="full">Full-time</RadioGroup.Item>
+                            <RadioGroup.Item value="part time">Part-time</RadioGroup.Item>
+                            <RadioGroup.Item value="full time">Full-time</RadioGroup.Item>
                         </RadioGroup.Root>
                         <div>
                             <label htmlFor=""></label>
