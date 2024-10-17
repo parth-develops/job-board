@@ -8,12 +8,13 @@ import { IconType } from "react-icons";
 
 type PropsType = {
     name: string,
-    icon: IconType
+    icon: IconType,
+    defaultValue?: string,
 };
 
 export default function ImageUpload(props: PropsType) {
     const fileRef = useRef<HTMLInputElement>(null);
-    const [imgPath, setImgPath] = useState("");
+    const [imgPath, setImgPath] = useState(props?.defaultValue || "");
     const [isUploading, setIsUploading] = useState(false);
     const [isImgLoading, setIsImgLoading] = useState(false);
 
