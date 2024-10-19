@@ -31,8 +31,10 @@ export default function JobCard({ jobInfo }: { jobInfo: Job }) {
                 </div>
                 <div className="sm:flex sm:grow">
                     <div className="sm:grow">
-                        <p className="text-gray-500 text-sm">{jobInfo.orgName}</p>
-                        <p className="font-bold text-lg mb-1">{jobInfo.jobTitle}</p>
+                        <Link href={`/jobs/${jobInfo.orgId}`} className="inline-block hover:underline text-gray-500 text-sm">{jobInfo.orgName}</Link>
+                        <div>
+                            <Link href={`/show/${jobInfo._id}`} className="inline-block hover:underline font-bold text-lg mb-1">{jobInfo.jobTitle}</Link>
+                        </div>
                         <p className="text-gray-400 text-sm capitalize">
                             <span title="Location type">{jobInfo.locationType}</span> &bull; <span title="Location">{`${jobInfo.country.name}, ${jobInfo.state.name}, ${jobInfo.city.name}`}</span> &bull; <span title="Employment Type">{jobInfo.employmentType}</span>
                         </p>
