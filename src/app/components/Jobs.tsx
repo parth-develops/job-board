@@ -1,7 +1,33 @@
+"use client"
+
+import { useSearchParams } from "next/navigation";
 import type { Job } from "../models/Job";
 import JobCard from "./JobCard";
+import { useEffect, useState } from "react";
 
 export default function Jobs({ header, jobs }: { header?: string, jobs?: Job[] }) {
+    const searchParams = useSearchParams();
+    const searchQuery = searchParams.get("search");
+
+    const [searchTerm, setSearchTerm] = useState(searchQuery || '');
+
+    useEffect(() => {
+        if (searchQuery) {
+            setSearchTerm(searchQuery);
+        }
+    }, [searchQuery])
+
+    const jobsToRender = searchTerm
+        ? jobs?.filter(job => {
+            return (
+                job.jobTitle.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                job.locationType.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                job.employmentType.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        })
+        : jobs;
+
+
     return (
         <section className="bg-slate-200 py-4 rounded-3xl">
             <div className="container">
@@ -10,7 +36,7 @@ export default function Jobs({ header, jobs }: { header?: string, jobs?: Job[] }
                     {!jobs?.length && (
                         <div>No Jobs found</div>
                     )}
-                    {jobs?.map((job) => (
+                    {jobsToRender?.map((job) => (
                         <JobCard key={job._id} jobInfo={job} />
                     ))}
                 </div>

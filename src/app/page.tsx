@@ -10,9 +10,9 @@ export default async function Home() {
   const latestJobs = await addOrgAndUserData(await JobModel.find({}, {}, { limit: 5, sort: "-createdAt" }), user)
 
   return (
-    <>
+    <main>
       <Hero />
       <Jobs jobs={latestJobs} />
-    </>
+    </main>
   );
 }

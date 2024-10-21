@@ -1,5 +1,3 @@
-"use server";
-
 import { withAuth } from "@workos-inc/authkit-nextjs"
 import { WorkOS } from "@workos-inc/node"
 import Link from "next/link";
@@ -26,7 +24,6 @@ export default async function NewListing() {
 
     return (
         <div className="container">
-            {JSON.stringify(orgNames)}
             <div>
                 <h2 className="text-lg mt-6">Your companies</h2>
                 <p className="text-gray-500 text-sm">Select a company to create a job</p>
