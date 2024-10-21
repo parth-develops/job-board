@@ -13,11 +13,13 @@ export default function Jobs({ header, jobs }: { header?: string, jobs?: Job[] }
 
     useEffect(() => {
         if (searchQuery) {
+            console.log("THE seearch Params", searchParams);
+
             setSearchTerm(searchQuery);
         }
-    }, [searchQuery])
+    }, [searchQuery, searchParams])
 
-    const jobsToRender = searchTerm
+    const jobsToRender = (searchParams.size && searchTerm)
         ? jobs?.filter(job => {
             return (
                 job.jobTitle.toLowerCase().includes(searchTerm.toLowerCase()) ||
