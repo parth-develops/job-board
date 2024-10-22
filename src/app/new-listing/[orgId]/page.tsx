@@ -23,8 +23,6 @@ export default async function OrganizationPage(props: PageProps) {
         return "no access";
     }
 
-    const orgMembership = orgMemberships.data.find(om => orgId === om.organizationId)
-
     return (
         <div className='container'>
             <JobForm orgId={orgId} />
