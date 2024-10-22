@@ -4,6 +4,7 @@ import "@radix-ui/themes/styles.css";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import GlobalProgressBar from "./components/GlobalProgressBar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <GlobalProgressBar />
         <Header />
         {children}
         <Footer />
