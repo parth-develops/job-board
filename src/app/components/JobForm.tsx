@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 
 import { Button, RadioGroup, TextArea, TextField, Theme } from "@radix-ui/themes";
